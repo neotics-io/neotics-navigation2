@@ -1,3 +1,23 @@
+<!-- Section added by Neotics. The original project's README follows the horizontal rule, unchanged. -->
+<p align="center">
+  <a href="https://neotics.io">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset=".github/neotics-wordmark-white.svg">
+      <img alt="Neotics" src=".github/neotics-wordmark.svg" height="34">
+    </picture>
+  </a>
+</p>
+
+### Neotics Nav2 · Navigation
+
+This is the [Neotics](https://neotics.io) copy of [Nav2](https://github.com/ros-navigation/navigation2). We keep this copy so we can build on it.
+
+The code here comes from the original project. Credit and copyright stay with its authors, under the project's own licence. Neotics is not affiliated with or endorsed by the original project.
+
+Neotics changed this README to add this section. Every change from the original is listed in [NEOTICS.md](NEOTICS.md).
+
+---
+
 # Nav2
 [![GitHub Workflow Status](https://github.com/ros-navigation/navigation2/actions/workflows/update_ci_image.yaml/badge.svg)](https://github.com/ros-navigation/navigation2/actions/workflows/update_ci_image.yaml)
 [![codecov](https://codecov.io/gh/ros-navigation/navigation2/branch/main/graph/badge.svg?token=S3iRmypwlg)](https://codecov.io/gh/ros-navigation/navigation2)
