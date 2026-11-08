@@ -10,8 +10,10 @@ import rclpy
 import yaml
 from geometry_msgs.msg import PoseStamped
 from nav2_msgs.action import ComputePathToPose
+from nav_msgs.msg import OccupancyGrid
 from rclpy.action import ActionClient
 from rclpy.node import Node
+from rclpy.qos import DurabilityPolicy, QoSProfile
 
 KIT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(KIT))
@@ -47,6 +49,18 @@ def pose(x: float, y: float) -> PoseStamped:
     return msg
 
 
+def wait_for_walls(node: Node, seconds: float = 120.0) -> bool:
+    """The planner answers before its costmap holds the map, and an empty costmap gives a straight line through everything."""
+    seen = []
+    latched = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL)
+    subscription = node.create_subscription(OccupancyGrid, "global_costmap/costmap", lambda grid: seen.append(100 in grid.data), latched)
+    deadline = time.monotonic() + seconds
+    while time.monotonic() < deadline and not any(seen):
+        rclpy.spin_once(node, timeout_sec=0.5)
+    node.destroy_subscription(subscription)
+    return any(seen)
+
+
 def main() -> int:
     scene = Scene.load(KIT / "samples" / "depot.scene.json")
     work = Path(tempfile.mkdtemp())
@@ -64,6 +78,9 @@ def main() -> int:
     try:
         rclpy.init()
         node = Node("neotics_ci")
+        if not wait_for_walls(node):
+            print("FAIL: the costmap never received the map")
+            return 1
         client = ActionClient(node, ComputePathToPose, "compute_path_to_pose")
         goal = ComputePathToPose.Goal(start=pose(*dock), goal=pose(*scene.waypoints["dropoff"]), use_start=True)
         deadline = time.monotonic() + 180
