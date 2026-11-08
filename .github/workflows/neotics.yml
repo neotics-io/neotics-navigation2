@@ -1,0 +1,25 @@
+name: Neotics kit
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'neotics/**'
+      - '.github/workflows/neotics.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    container: ros:jazzy
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install
+        run: apt-get update && apt-get install -y --no-install-recommends ros-jazzy-nav2-map-server ros-jazzy-nav2-planner ros-jazzy-nav2-navfn-planner ros-jazzy-nav2-costmap-2d ros-jazzy-nav2-lifecycle-manager ros-jazzy-nav2-msgs ros-jazzy-tf2-ros python3-pytest python3-yaml python3-pil python3-numpy
+      - name: Format and exporter tests
+        run: python3 -m pytest -q neotics/tests
+      - name: Full check in ROS 2
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          python3 neotics/tests/ci_nav2.py

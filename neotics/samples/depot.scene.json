@@ -1,0 +1,45 @@
+{
+  "neotics_scene": 1,
+  "name": "depot",
+  "floor": { "size": [10.0, 6.0], "friction": 0.9 },
+  "walls": { "thickness": 0.1, "height": 1.0 },
+  "obstacles": [
+    { "name": "shelf_a", "center": [-2.5, 1.2], "size": [3.0, 0.6], "height": 1.0 },
+    { "name": "shelf_b", "center": [2.5, 1.2], "size": [3.0, 0.6], "height": 1.0 },
+    { "name": "shelf_c", "center": [-2.5, -1.2], "size": [3.0, 0.6], "height": 1.0 },
+    { "name": "shelf_d", "center": [2.5, -1.2], "size": [3.0, 0.6], "height": 1.0 },
+    { "name": "table", "center": [0.0, 2.45], "size": [0.9, 0.7], "height": 0.7 }
+  ],
+  "items": [
+    { "name": "crate", "center": [0.3, 2.3, 0.74], "size": [0.08, 0.08, 0.08], "mass": 0.2 }
+  ],
+  "waypoints": [
+    { "name": "dock", "at": [-4.3, 0.0] },
+    { "name": "aisle_west", "at": [-2.5, 0.0] },
+    { "name": "center", "at": [0.0, 0.0] },
+    { "name": "aisle_east", "at": [2.5, 0.0] },
+    { "name": "charger", "at": [4.3, 0.0] },
+    { "name": "pickup", "at": [0.0, 1.6] },
+    { "name": "dropoff", "at": [0.0, -2.2] }
+  ],
+  "lanes": [
+    ["dock", "aisle_west"],
+    ["aisle_west", "center"],
+    ["center", "aisle_east"],
+    ["aisle_east", "charger"],
+    ["center", "pickup"],
+    ["center", "dropoff"]
+  ],
+  "robot": {
+    "name": "neotics_arm",
+    "base": [0.0, 2.45, 0.7],
+    "links": [
+      { "joint": "base_yaw", "axis": "z", "length": 0.12, "radius": 0.05, "mass": 1.0, "range": [-2.9, 2.9] },
+      { "joint": "shoulder", "axis": "y", "length": 0.3, "radius": 0.04, "mass": 0.8, "range": [-1.7, 1.7] },
+      { "joint": "elbow", "axis": "y", "length": 0.25, "radius": 0.035, "mass": 0.5, "range": [-2.4, 2.4] },
+      { "joint": "wrist", "axis": "y", "length": 0.1, "radius": 0.03, "mass": 0.2, "range": [-1.8, 1.8] }
+    ],
+    "home": [0.0, 0.0, 0.0, 0.0],
+    "reach": [0.5, 0.7, 0.9, 0.4]
+  }
+}

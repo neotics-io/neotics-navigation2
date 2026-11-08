@@ -10,9 +10,11 @@
 
 ### Neotics Nav2 · Navigation
 
-This is the [Neotics](https://neotics.io) copy of [Nav2](https://github.com/ros-navigation/navigation2). We keep this copy so we can build on it.
+[![Neotics kit](https://github.com/neotics-io/neotics-navigation2/actions/workflows/neotics.yml/badge.svg)](https://github.com/neotics-io/neotics-navigation2/actions/workflows/neotics.yml)
 
-The code here comes from the original project. Credit and copyright stay with its authors, under the project's own licence. Neotics is not affiliated with or endorsed by the original project.
+This is the [Neotics](https://neotics.io) copy of [Nav2](https://github.com/ros-navigation/navigation2). The [`neotics`](neotics) folder is our own work: it turns any Neotics scene into a Nav2 map with its named places.
+
+Everything outside the `neotics` folder comes from the original project. Credit and copyright for it stay with its authors, under the project's own licence. Neotics is not affiliated with or endorsed by the original project.
 
 Neotics changed this README to add this section. Every change from the original is listed in [NEOTICS.md](NEOTICS.md).
 

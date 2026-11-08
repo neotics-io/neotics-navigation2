@@ -1,0 +1,9 @@
+Copyright (c) 2026 Neotics. All rights reserved.
+
+This licence covers only the files in this `neotics` folder and
+`.github/workflows/neotics.yml`. Everything else in this repository belongs to
+its original authors and stays under the original project's licence.
+
+You may read these files, and run them unmodified to build and test work for
+Neotics challenges. Any other use, copying or distribution needs written
+permission from Neotics.
